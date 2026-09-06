@@ -1,0 +1,633 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Jody Ahmed Reda — QA & Software Testing Engineer</title>
+<meta name="description" content="Portfolio of Jody Ahmed Reda, Computer Engineering student specializing in Software Quality Assurance.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ocean:#0A4D68;
+    --ocean-deep:#063245;
+    --sky:#2D9CDB;
+    --sky-light:#6EC6FF;
+    --sky-pale:#EAF6FF;
+    --white:#FFFFFF;
+    --gray-light:#F5F8FB;
+    --gray-mid:#E4EBF1;
+    --text:#152634;
+    --text-soft:#5C707E;
+    --shadow-sm:0 6px 18px rgba(10,77,104,0.08);
+    --shadow-md:0 20px 45px rgba(10,77,104,0.14);
+    --shadow-lg:0 30px 70px rgba(10,77,104,0.20);
+    --radius:20px;
+    --sans:'Inter', system-ui, sans-serif;
+    --display:'Poppins', system-ui, sans-serif;
+  }
+
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    font-family:var(--sans);
+    color:var(--text);
+    background:var(--white);
+    line-height:1.65;
+    overflow-x:hidden;
+  }
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.001ms !important; animation-iteration-count:1 !important; transition-duration:0.001ms !important; scroll-behavior:auto !important;}
+  }
+
+  h1,h2,h3,h4{font-family:var(--display); color:var(--ocean-deep); margin:0; letter-spacing:-0.01em;}
+  p{margin:0;}
+  a{color:inherit; text-decoration:none;}
+  img{display:block; max-width:100%;}
+  .wrap{max-width:1200px; margin:0 auto; padding:0 32px;}
+  section{position:relative; z-index:1;}
+
+  ::selection{background:var(--sky-light); color:var(--ocean-deep);}
+
+  /* ---------------- SCROLL REVEAL ---------------- */
+  .reveal{opacity:0; transform:translateY(32px); transition:opacity 0.7s cubic-bezier(.22,1,.36,1), transform 0.7s cubic-bezier(.22,1,.36,1);}
+  .reveal.in{opacity:1; transform:translateY(0);}
+  .reveal-delay-1{transition-delay:0.1s;}
+  .reveal-delay-2{transition-delay:0.2s;}
+  .reveal-delay-3{transition-delay:0.3s;}
+  .reveal-delay-4{transition-delay:0.4s;}
+
+  /* ---------------- NAV ---------------- */
+  header.site-nav{
+    position:fixed; top:0; left:0; right:0; z-index:200;
+    padding:20px 0;
+    transition:padding 0.3s ease, background 0.3s ease, box-shadow 0.3s ease;
+  }
+  header.site-nav.scrolled{
+    padding:12px 0;
+    background:rgba(255,255,255,0.85);
+    backdrop-filter:blur(14px);
+    box-shadow:0 8px 30px rgba(10,77,104,0.08);
+  }
+  .nav-inner{
+    display:flex; align-items:center; justify-content:space-between;
+    max-width:1200px; margin:0 auto; padding:0 32px;
+  }
+  .nav-logo{
+    font-family:var(--display); font-weight:700; font-size:1.15rem;
+    color:var(--ocean-deep); display:flex; align-items:center; gap:10px;
+  }
+  .nav-logo-dot{
+    width:10px; height:10px; border-radius:50%;
+    background:linear-gradient(135deg, var(--sky), var(--sky-light));
+    box-shadow:0 0 0 4px rgba(45,156,219,0.18);
+  }
+  .nav-links{display:flex; align-items:center; gap:36px; list-style:none; margin:0; padding:0;}
+  .nav-links a{
+    font-weight:500; font-size:0.95rem; color:var(--text-soft);
+    position:relative; padding-bottom:4px; transition:color 0.2s ease;
+  }
+  .nav-links a::after{
+    content:''; position:absolute; left:0; bottom:0; width:0; height:2px;
+    background:linear-gradient(90deg, var(--sky), var(--sky-light));
+    transition:width 0.25s ease;
+  }
+  .nav-links a:hover{color:var(--ocean-deep);}
+  .nav-links a:hover::after{width:100%;}
+  .btn-resume{
+    font-family:var(--display); font-weight:600; font-size:0.9rem;
+    color:var(--white); background:linear-gradient(135deg, var(--ocean), var(--sky));
+    padding:11px 24px; border-radius:50px; box-shadow:var(--shadow-sm);
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+    display:inline-block;
+  }
+  .btn-resume:hover{transform:translateY(-3px) scale(1.03); box-shadow:var(--shadow-md);}
+  .nav-toggle{display:none; background:none; border:none; cursor:pointer; padding:6px; z-index:210;}
+  .nav-toggle span{display:block; width:24px; height:2.5px; background:var(--ocean-deep); margin:5px 0; border-radius:2px; transition:transform 0.3s ease, opacity 0.3s ease;}
+  .nav-toggle.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg);}
+  .nav-toggle.open span:nth-child(2){opacity:0;}
+  .nav-toggle.open span:nth-child(3){transform:translateY(-7.5px) rotate(-45deg);}
+
+  @media (max-width:900px){
+    .nav-links{
+      position:fixed; top:0; right:0; height:100vh; width:min(78vw, 340px);
+      background:var(--white); flex-direction:column; justify-content:center; align-items:flex-start;
+      gap:26px; padding:0 44px; box-shadow:-20px 0 60px rgba(10,77,104,0.15);
+      transform:translateX(100%); transition:transform 0.4s cubic-bezier(.22,1,.36,1);
+    }
+    .nav-links.open{transform:translateX(0);}
+    .nav-links a{font-size:1.15rem;}
+    .nav-toggle{display:block;}
+  }
+
+  a:focus-visible, button:focus-visible{outline:2px solid var(--sky); outline-offset:3px;}
+
+  /* ---------------- BACKGROUND BLOBS (shared) ---------------- */
+  .bg-blob{position:absolute; border-radius:50%; filter:blur(60px); z-index:0; opacity:0.5; pointer-events:none;}
+
+  /* ---------------- HERO ---------------- */
+  .hero{
+    padding:180px 0 120px;
+    background:linear-gradient(180deg, var(--sky-pale) 0%, var(--white) 75%);
+    overflow:hidden;
+  }
+  .hero .bg-blob-1{width:420px; height:420px; background:radial-gradient(circle, var(--sky-light), transparent 70%); top:-120px; right:-100px; animation:float-slow 9s ease-in-out infinite;}
+  .hero .bg-blob-2{width:280px; height:280px; background:radial-gradient(circle, var(--sky), transparent 70%); bottom:-80px; left:-60px; opacity:0.25; animation:float-slow 11s ease-in-out infinite reverse;}
+  @keyframes float-slow{
+    0%,100%{transform:translateY(0) translateX(0);}
+    50%{transform:translateY(-24px) translateX(14px);}
+  }
+
+  .hero-grid{display:grid; grid-template-columns:1.05fr 0.95fr; gap:60px; align-items:center;}
+  .hero-eyebrow{
+    display:inline-flex; align-items:center; gap:9px;
+    font-family:var(--display); font-weight:600; font-size:0.85rem; color:var(--ocean);
+    background:var(--white); border:1px solid var(--gray-mid); padding:8px 16px 8px 12px;
+    border-radius:50px; margin-bottom:26px; box-shadow:var(--shadow-sm);
+  }
+  .hero-eyebrow .pulse-dot{
+    width:8px; height:8px; border-radius:50%; background:var(--sky);
+    box-shadow:0 0 0 0 rgba(45,156,219,0.5); animation:pulse 2s infinite;
+  }
+  @keyframes pulse{
+    0%{box-shadow:0 0 0 0 rgba(45,156,219,0.45);}
+    70%{box-shadow:0 0 0 10px rgba(45,156,219,0);}
+    100%{box-shadow:0 0 0 0 rgba(45,156,219,0);}
+  }
+  h1.hero-title{font-size:clamp(2.3rem, 4.6vw, 3.5rem); line-height:1.14; font-weight:700; max-width:15ch;}
+  h1.hero-title span{
+    background:linear-gradient(120deg, var(--sky), var(--ocean));
+    -webkit-background-clip:text; background-clip:text; color:transparent;
+  }
+  .hero-sub{margin-top:24px; max-width:50ch; color:var(--text-soft); font-size:1.1rem;}
+  .hero-ctas{display:flex; align-items:center; gap:22px; margin-top:38px; flex-wrap:wrap;}
+  .btn-primary{
+    font-family:var(--display); font-weight:600; font-size:0.98rem;
+    background:linear-gradient(135deg, var(--ocean), var(--sky));
+    color:var(--white); padding:16px 32px; border-radius:50px;
+    box-shadow:var(--shadow-md); display:inline-flex; align-items:center; gap:10px;
+    transition:transform 0.25s ease, box-shadow 0.25s ease;
+  }
+  .btn-primary:hover{transform:translateY(-4px); box-shadow:var(--shadow-lg);}
+  .btn-primary svg{width:16px; height:16px; transition:transform 0.25s ease;}
+  .btn-primary:hover svg{transform:translateX(4px);}
+  .btn-outline{
+    font-family:var(--display); font-weight:600; font-size:0.98rem;
+    color:var(--ocean-deep); padding:15px 30px; border-radius:50px;
+    border:1.5px solid var(--gray-mid); background:var(--white);
+    transition:border-color 0.25s ease, transform 0.25s ease;
+  }
+  .btn-outline:hover{border-color:var(--sky); transform:translateY(-3px);}
+
+  .hero-stats{display:flex; gap:38px; margin-top:56px; flex-wrap:wrap;}
+  .hero-stat h3{font-size:1.7rem; font-weight:700; color:var(--ocean);}
+  .hero-stat p{font-size:0.86rem; color:var(--text-soft); margin-top:2px;}
+
+  /* Hero graphic */
+  .hero-graphic{position:relative; height:440px;}
+  .orbit-card{
+    position:absolute; background:var(--white); border-radius:18px;
+    box-shadow:var(--shadow-md); padding:16px 20px; display:flex; align-items:center; gap:12px;
+    font-family:var(--display); font-weight:600; font-size:0.85rem; color:var(--ocean-deep);
+  }
+  .orbit-card svg{width:20px; height:20px; flex-shrink:0;}
+  .orbit-1{top:6%; left:2%; animation:float-med 6s ease-in-out infinite;}
+  .orbit-2{top:38%; right:0%; animation:float-med 7s ease-in-out infinite 0.6s;}
+  .orbit-3{bottom:8%; left:12%; animation:float-med 6.5s ease-in-out infinite 1.1s;}
+  @keyframes float-med{
+    0%,100%{transform:translateY(0);}
+    50%{transform:translateY(-16px);}
+  }
+  .hero-core{
+    position:absolute; top:50%; left:50%; transform:translate(-50%,-50%);
+    width:250px; height:250px; border-radius:50%;
+    background:conic-gradient(from 0deg, var(--sky), var(--sky-light), var(--ocean), var(--sky));
+    animation:spin-slow 14s linear infinite;
+    display:flex; align-items:center; justify-content:center;
+  }
+  @keyframes spin-slow{ to{transform:translate(-50%,-50%) rotate(360deg);} }
+  .hero-core-inner{
+    width:200px; height:200px; border-radius:50%; background:var(--white);
+    display:flex; align-items:center; justify-content:center; box-shadow:inset 0 0 30px rgba(10,77,104,0.06);
+  }
+  .hero-core-inner svg{width:84px; height:84px;}
+
+  /* ---------------- SECTION HEADS ---------------- */
+  .section-pad{padding:120px 0;}
+  .section-head{max-width:640px; margin:0 auto 60px; text-align:center;}
+  .section-eyebrow{
+    font-family:var(--display); font-weight:600; font-size:0.82rem; color:var(--sky);
+    letter-spacing:0.03em; margin-bottom:12px; display:block;
+  }
+  .section-head h2{font-size:clamp(1.9rem, 3.4vw, 2.5rem);}
+  .section-head p{color:var(--text-soft); margin-top:16px; font-size:1.05rem;}
+
+  /* ---------------- ABOUT ---------------- */
+  .about{background:var(--gray-light);}
+  .about-grid{display:grid; grid-template-columns:0.85fr 1.15fr; gap:70px; align-items:center;}
+  .about-photo-wrap{position:relative;}
+  .about-photo-wrap .blob-shape{
+    position:absolute; inset:-24px; z-index:0;
+    background:linear-gradient(135deg, var(--sky-light), var(--sky));
+    border-radius:44% 56% 63% 37% / 45% 41% 59% 55%;
+    animation:morph 9s ease-in-out infinite;
+    opacity:0.85;
+  }
+  @keyframes morph{
+    0%,100%{border-radius:44% 56% 63% 37% / 45% 41% 59% 55%;}
+    50%{border-radius:56% 44% 37% 63% / 55% 60% 40% 45%;}
+  }
+  .about-photo{
+    position:relative; z-index:1; border-radius:28px; overflow:hidden;
+    box-shadow:var(--shadow-lg); aspect-ratio:4/5; object-fit:cover; width:100%;
+    border:6px solid var(--white);
+  }
+  .about-badge{
+    position:absolute; z-index:2; bottom:-18px; right:-18px;
+    background:var(--white); border-radius:16px; box-shadow:var(--shadow-md);
+    padding:14px 18px; display:flex; align-items:center; gap:10px;
+    font-family:var(--display); font-weight:600; font-size:0.82rem; color:var(--ocean-deep);
+  }
+  .about-badge svg{width:22px; height:22px;}
+
+  .about-text p{color:var(--text-soft); margin-bottom:18px; font-size:1.03rem; max-width:60ch;}
+  .about-text p strong{color:var(--text); font-weight:600;}
+
+  /* ---------------- SERVICES ---------------- */
+  .services-grid{display:grid; grid-template-columns:repeat(4, 1fr); gap:26px;}
+  @media (max-width:1000px){.services-grid{grid-template-columns:1fr 1fr;}}
+  @media (max-width:600px){.services-grid{grid-template-columns:1fr;}}
+
+  .service-card{
+    background:var(--white); border-radius:24px; padding:34px 28px;
+    box-shadow:var(--shadow-sm); border:1px solid var(--gray-mid);
+    transition:transform 0.35s cubic-bezier(.22,1,.36,1), box-shadow 0.35s ease, border-color 0.35s ease;
+    position:relative; overflow:hidden;
+  }
+  .service-card::before{
+    content:''; position:absolute; top:0; left:0; right:0; height:4px;
+    background:linear-gradient(90deg, var(--sky), var(--sky-light));
+    transform:scaleX(0); transform-origin:left; transition:transform 0.35s ease;
+  }
+  .service-card:hover{transform:translateY(-10px); box-shadow:var(--shadow-lg); border-color:transparent;}
+  .service-card:hover::before{transform:scaleX(1);}
+  .service-icon{
+    width:56px; height:56px; border-radius:16px;
+    background:linear-gradient(135deg, var(--sky-pale), #DCF0FF);
+    display:flex; align-items:center; justify-content:center; margin-bottom:22px;
+    transition:background 0.35s ease, transform 0.35s ease;
+  }
+  .service-card:hover .service-icon{background:linear-gradient(135deg, var(--sky), var(--ocean)); transform:rotate(-8deg) scale(1.08);}
+  .service-icon svg{width:26px; height:26px; stroke:var(--ocean); transition:stroke 0.35s ease;}
+  .service-card:hover .service-icon svg{stroke:var(--white);}
+  .service-card h3{font-size:1.1rem; margin-bottom:12px;}
+  .service-card p{color:var(--text-soft); font-size:0.94rem;}
+
+  /* ---------------- PROJECTS ---------------- */
+  .projects{background:var(--gray-light);}
+  .projects-grid{display:grid; grid-template-columns:1fr 1fr; gap:34px;}
+  @media (max-width:860px){.projects-grid{grid-template-columns:1fr;}}
+
+  .project-card{
+    background:var(--white); border-radius:26px; overflow:hidden;
+    box-shadow:var(--shadow-sm); transition:transform 0.4s cubic-bezier(.22,1,.36,1), box-shadow 0.4s ease;
+  }
+  .project-card:hover{transform:translateY(-8px); box-shadow:var(--shadow-lg);}
+
+  .project-cover{
+    height:190px; position:relative; overflow:hidden;
+    display:flex; align-items:center; justify-content:center;
+  }
+  .project-cover svg{width:72px; height:72px; opacity:0.92; position:relative; z-index:1; transition:transform 0.4s ease;}
+  .project-card:hover .project-cover svg{transform:scale(1.12) rotate(-4deg);}
+  .cover-1{background:linear-gradient(135deg, #0A4D68, #2D9CDB);}
+  .cover-2{background:linear-gradient(135deg, #C9A876, #2D9CDB);}
+  .cover-3{background:linear-gradient(135deg, #0A4D68, #6EC6FF);}
+  .cover-4{background:linear-gradient(135deg, #2D9CDB, #063245);}
+  .cover-pattern{
+    position:absolute; inset:0; opacity:0.18;
+    background-image:radial-gradient(circle, rgba(255,255,255,0.7) 1.5px, transparent 1.5px);
+    background-size:22px 22px;
+  }
+
+  .project-body{padding:28px 26px 30px;}
+  .project-badge{
+    display:inline-block; font-family:var(--display); font-weight:600; font-size:0.72rem;
+    color:var(--sky); background:var(--sky-pale); padding:5px 12px; border-radius:50px; margin-bottom:14px;
+  }
+  .project-body h3{font-size:1.2rem; margin-bottom:10px;}
+  .project-body p{color:var(--text-soft); font-size:0.94rem; margin-bottom:16px;}
+  .project-tags{display:flex; flex-wrap:wrap; gap:8px;}
+  .project-tags span{
+    font-size:0.76rem; color:var(--ocean); background:var(--gray-light);
+    border:1px solid var(--gray-mid); padding:4px 10px; border-radius:8px; font-weight:500;
+  }
+
+  /* ---------------- CONTACT ---------------- */
+  .contact{
+    background:linear-gradient(150deg, var(--ocean-deep), var(--ocean) 55%, var(--sky) 130%);
+    color:var(--white); overflow:hidden; position:relative;
+  }
+  .contact .bg-blob-3{width:360px; height:360px; background:radial-gradient(circle, var(--sky-light), transparent 70%); top:-100px; left:-80px; opacity:0.35; animation:float-slow 10s ease-in-out infinite;}
+  .contact .section-head h2{color:var(--white);}
+  .contact .section-head p{color:rgba(255,255,255,0.78);}
+
+  .contact-card{
+    background:rgba(255,255,255,0.08); border:1px solid rgba(255,255,255,0.18);
+    backdrop-filter:blur(10px); border-radius:28px; padding:50px;
+    display:grid; grid-template-columns:1fr 1fr; gap:20px 40px;
+  }
+  @media (max-width:760px){.contact-card{grid-template-columns:1fr; padding:34px 26px;}}
+
+  .contact-item{
+    display:flex; align-items:center; gap:16px; padding:14px 0;
+  }
+  .contact-icon{
+    width:46px; height:46px; border-radius:14px; background:rgba(255,255,255,0.12);
+    display:flex; align-items:center; justify-content:center; flex-shrink:0;
+    transition:background 0.3s ease, transform 0.3s ease;
+  }
+  .contact-item:hover .contact-icon{background:var(--sky); transform:scale(1.08) rotate(-6deg);}
+  .contact-icon svg{width:20px; height:20px; stroke:var(--white); fill:none;}
+  .contact-item a{font-family:var(--display); font-weight:600; font-size:1rem;}
+  .contact-item span.meta{display:block; font-size:0.8rem; color:rgba(255,255,255,0.6); font-weight:400; margin-top:2px; font-family:var(--sans);}
+
+  .contact-cta{text-align:center; margin-top:52px;}
+  .btn-cream{
+    font-family:var(--display); font-weight:600; font-size:1rem;
+    background:var(--white); color:var(--ocean-deep); padding:17px 38px; border-radius:50px;
+    display:inline-block; box-shadow:0 20px 45px rgba(0,0,0,0.25);
+    transition:transform 0.25s ease;
+  }
+  .btn-cream:hover{transform:translateY(-4px) scale(1.03);}
+
+  footer{
+    background:var(--ocean-deep); color:rgba(255,255,255,0.55);
+    font-size:0.85rem; padding:26px 0; text-align:center;
+  }
+</style>
+</head>
+<body>
+
+<header class="site-nav" id="siteNav">
+  <div class="nav-inner">
+    <a href="#home" class="nav-logo"><span class="nav-logo-dot"></span>Jody Ahmed Reda</a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About</a></li>
+      <li><a href="#services">Services</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="btn-resume" href="https://drive.google.com/file/d/1Hkaqs0mZCaRkl_MoNr3suHHDNgOxn6hB/view?usp=drivesdk" target="_blank" rel="noopener">Resume</a></li>
+    </ul>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- HOME / HERO -->
+<section class="hero" id="home">
+  <div class="bg-blob bg-blob-1"></div>
+  <div class="bg-blob bg-blob-2"></div>
+  <div class="wrap hero-grid">
+    <div>
+      <span class="hero-eyebrow reveal"><span class="pulse-dot"></span>Available for QA opportunities</span>
+      <h1 class="hero-title reveal reveal-delay-1">Hi! I'm Jody Ahmed Reda. <span>Welcome to my Quality Assurance world.</span></h1>
+      <p class="hero-sub reveal reveal-delay-2">I don't just test software — I break it down, analyze its architecture, and ensure it runs flawlessly to help businesses deliver top-tier products.</p>
+      <div class="hero-ctas reveal reveal-delay-3">
+        <a class="btn-primary" href="#projects">
+          See my work
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+        <a class="btn-outline" href="#contact">Let's talk</a>
+      </div>
+      <div class="hero-stats reveal reveal-delay-4">
+        <div class="hero-stat"><h3>4+</h3><p>Projects tested end-to-end</p></div>
+        <div class="hero-stat"><h3>Top 15</h3><p>Qabilah Hackathon finalist</p></div>
+        <div class="hero-stat"><h3>2</h3><p>Domains: healthcare &amp; TechForGood</p></div>
+      </div>
+    </div>
+
+    <div class="hero-graphic reveal reveal-delay-2" aria-hidden="true">
+      <div class="hero-core">
+        <div class="hero-core-inner">
+          <svg viewBox="0 0 24 24" fill="none" stroke="#0A4D68" stroke-width="1.6"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        </div>
+      </div>
+      <div class="orbit-card orbit-1">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2D9CDB" stroke-width="2"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        Test passed
+      </div>
+      <div class="orbit-card orbit-2">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#0A4D68" stroke-width="2"><path d="M12 20V10M18 20V4M6 20v-4"/></svg>
+        Edge cases
+      </div>
+      <div class="orbit-card orbit-3">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2D9CDB" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg>
+        Architecture
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about section-pad" id="about">
+  <div class="wrap about-grid">
+    <div class="about-photo-wrap reveal">
+      <div class="blob-shape"></div>
+      <img class="about-photo" src="jody-photo.png" alt="Jody Ahmed Reda">
+      <div class="about-badge">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#2D9CDB" stroke-width="2"><path d="M12 2l2.9 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l7.1-1.01z"/></svg>
+        Computer Engineering, Cairo University
+      </div>
+    </div>
+    <div class="about-text">
+      <span class="section-eyebrow reveal">About me</span>
+      <h2 class="reveal" style="margin-bottom:22px;">A puzzle-solver at heart</h2>
+      <p class="reveal reveal-delay-1">Ever since I was a kid, I've loved puzzles — not just solving them, but finding the bigger picture hidden inside the tiny pieces. That curiosity grew into a passion for making sense of <strong>complex software architectures</strong>.</p>
+      <p class="reveal reveal-delay-2">Later, I discovered how much I enjoy uncovering edge cases and turning what feels "unpredictable" into something secure, reliable, and logical. That's what led me to <strong>Software Quality Assurance</strong>.</p>
+      <p class="reveal reveal-delay-3">For me, QA is more than just finding bugs — it's about storytelling with logic. Whether I'm analyzing an SRS document, testing deep API endpoints, or tracing embedded system flows, I bring both engineering logic and creative problem-solving into my work to ensure systems truly serve their users.</p>
+      <p class="reveal reveal-delay-4">Alhamdulillah for every lesson learned on this journey.</p>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section-pad" id="services">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow reveal">What I do</span>
+      <h2 class="reveal reveal-delay-1">Services built on quality</h2>
+      <p class="reveal reveal-delay-2">From requirements to release, I bring structure and depth to every layer of testing.</p>
+    </div>
+
+    <div class="services-grid">
+      <div class="service-card reveal">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4D68" stroke-width="1.8"><path d="M9 12l2 2 4-4"/><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 9h18"/></svg></div>
+        <h3>Requirements Analysis &amp; Test Design</h3>
+        <p>Breaking down SRS documents into structured, testable coverage using BVA and decision tables.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-1">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4D68" stroke-width="1.8"><path d="M4 17l6-6-6-6"/><path d="M12 19h8"/></svg></div>
+        <h3>Manual &amp; API Testing</h3>
+        <p>Hands-on functional testing and API validation with Postman, plus structured bug tracking and lifecycle management.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-2">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4D68" stroke-width="1.8"><path d="M9 3v18M4 8h5M4 16h5"/><rect x="14" y="5" width="7" height="14" rx="1.5"/></svg></div>
+        <h3>Test Automation</h3>
+        <p>Automated test suites with Selenium and Java to keep regression coverage fast and reliable.</p>
+      </div>
+      <div class="service-card reveal reveal-delay-3">
+        <div class="service-icon"><svg viewBox="0 0 24 24" fill="none" stroke="#0A4D68" stroke-width="1.8"><rect x="4" y="4" width="16" height="16" rx="2"/><path d="M9 9h6v6H9z"/></svg></div>
+        <h3>Low-Level &amp; System Testing</h3>
+        <p>Validating embedded logic and C++ systems from the ground up, where there's no framework to hide behind.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section class="projects section-pad" id="projects">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow reveal">Selected work</span>
+      <h2 class="reveal reveal-delay-1">Projects that shaped my QA mindset</h2>
+      <p class="reveal reveal-delay-2">Real systems, real edge cases, real lessons learned.</p>
+    </div>
+
+    <div class="projects-grid">
+      <div class="project-card reveal">
+        <div class="project-cover cover-1">
+          <div class="cover-pattern"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg>
+        </div>
+        <div class="project-body">
+          <span class="project-badge">Healthcare</span>
+          <h3>Healthcare Clinic Booking Platform</h3>
+          <p>Tested against a full SRS across Authentication, Doctor Discovery, and Booking Engine — using BVA, Equivalence Partitioning, Decision Tables, and State Transition Testing.</p>
+          <div class="project-tags"><span>BVA</span><span>Equivalence Partitioning</span><span>State Transition</span></div>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-1">
+        <div class="project-cover cover-2">
+          <div class="cover-pattern"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><circle cx="12" cy="12" r="9"/><path d="M12 3v2M12 19v2M3 12h2M19 12h2"/><path d="M15 9l-4 6-2-2"/></svg>
+        </div>
+        <div class="project-body">
+          <span class="project-badge">TechForGood · Top 15</span>
+          <h3>Sakeenah AI</h3>
+          <p>An offline Hajj assistant — validated offline logic, fall-detection sensors, and compass-based tracking for pilgrims with zero connectivity.</p>
+          <div class="project-tags"><span>Offline Logic</span><span>Sensor Testing</span><span>TechForGood</span></div>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-2">
+        <div class="project-cover cover-3">
+          <div class="cover-pattern"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><rect x="3" y="11" width="18" height="7" rx="1.5"/><path d="M7 11V8a5 5 0 0 1 10 0v3"/></svg>
+        </div>
+        <div class="project-body">
+          <span class="project-badge">Robotics</span>
+          <h3>MED-E Robot</h3>
+          <p>Validated autonomous navigation logic and low-level ARM assembly drivers powering a healthcare-focused robotics platform.</p>
+          <div class="project-tags"><span>Autonomous Navigation</span><span>ARM Assembly</span></div>
+        </div>
+      </div>
+
+      <div class="project-card reveal reveal-delay-3">
+        <div class="project-cover cover-4">
+          <div class="cover-pattern"></div>
+          <svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="1.5"><path d="M4 4h16v4H4zM4 16h7v4H4zM15 16h5v4h-5z"/><path d="M8 8v4h4M16 8v4h-4"/></svg>
+        </div>
+        <div class="project-body">
+          <span class="project-badge">C++</span>
+          <h3>Flowchart Simulator</h3>
+          <p>A dynamic execution engine in C++ that simulates flowchart logic, built on a foundation of algorithmic validation.</p>
+          <div class="project-tags"><span>Dynamic Execution</span><span>Logic Validation</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact section-pad" id="contact">
+  <div class="bg-blob bg-blob-3"></div>
+  <div class="wrap">
+    <div class="section-head">
+      <span class="section-eyebrow reveal" style="color:#6EC6FF;">Get in touch</span>
+      <h2 class="reveal reveal-delay-1">Let's build something reliable together</h2>
+      <p class="reveal reveal-delay-2">Open to QA roles, internships, and conversations about test strategy.</p>
+    </div>
+
+    <div class="contact-card reveal reveal-delay-3">
+      <div class="contact-item">
+        <span class="contact-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.127.96.362 1.903.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.907.338 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/></svg></span>
+        <a href="tel:+201149979479">01149979479<span class="meta">Phone</span></a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M4 4h16v16H4z"/><path d="M22 6l-10 7L2 6"/></svg></span>
+        <a href="mailto:Jody.Ali06@eng-st.cu.edu.eg">Jody.Ali06@eng-st.cu.edu.eg<span class="meta">Email</span></a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-4 0v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg></span>
+        <a href="https://www.linkedin.com/in/jody-ahmed-reda2006?utm_source=share_via&utm_content=profile&utm_medium=member_android" target="_blank" rel="noopener">LinkedIn profile<span class="meta">jody-ahmed-reda2006</span></a>
+      </div>
+      <div class="contact-item">
+        <span class="contact-icon"><svg viewBox="0 0 24 24" stroke-width="1.8"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg></span>
+        <a href="https://github.com/Jody-Ahmed06" target="_blank" rel="noopener">GitHub profile<span class="meta">Jody-Ahmed06</span></a>
+      </div>
+    </div>
+
+    <div class="contact-cta reveal reveal-delay-4">
+      <a class="btn-cream" href="mailto:Jody.Ali06@eng-st.cu.edu.eg">Send me an email</a>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="wrap">© 2026 Jody Ahmed Reda</div>
+</footer>
+
+<script>
+  const nav = document.getElementById('siteNav');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 30);
+  });
+
+  const navToggle = document.getElementById('navToggle');
+  const navLinks = document.getElementById('navLinks');
+  navToggle.addEventListener('click', () => {
+    const isOpen = navLinks.classList.toggle('open');
+    navToggle.classList.toggle('open', isOpen);
+    navToggle.setAttribute('aria-expanded', isOpen);
+  });
+  navLinks.querySelectorAll('a').forEach(a => a.addEventListener('click', () => {
+    navLinks.classList.remove('open');
+    navToggle.classList.remove('open');
+    navToggle.setAttribute('aria-expanded', 'false');
+  }));
+
+  const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const revealEls = document.querySelectorAll('.reveal');
+  if (reduceMotion || !('IntersectionObserver' in window)) {
+    revealEls.forEach(el => el.classList.add('in'));
+  } else {
+    const io = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('in');
+          io.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15 });
+    revealEls.forEach(el => io.observe(el));
+  }
+</script>
+
+</body>
+</html>
